@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Copy Text to Clipboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            background-color: #ffe6f2;
+            color: #ff69b4;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .container {
+            text-align: center;
+            background-color: #fff0f5;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 0 10px rgba(255, 105, 180, 0.5);
+            margin: 10px 0;
+            width: 80%;
+        }
+        h2 {
+            color: #ff1493;
+        }
+        input[type="text"], textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 2px solid #ff1493;
+            border-radius: 10px;
+            background-color: #ffe6f2;
+            color: #ff69b4;
+            box-sizing: border-box;
+        }
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 10px;
+            background-color: #ff69b4;
+            color: #ffffff;
+            cursor: pointer;
+            font-size: 16px;
+            display: inline-flex;
+            align-items: center;
+        }
+        button:hover {
+            background-color: #ff1493;
+        }
+        button i {
+            margin-right: 8px;
+        }
+        .code-input {
+            font-family: 'Courier New', Courier, monospace;
+            background-color: #f5f5f5;
+            border: 1px solid #ccc;
+            padding: 10px;
+            border-radius: 5px;
+            color: #333;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        /* Navigation bar */
+        .navbar {
+        overflow: hidden;
+        background-color: #ff1493;
+        position: fixed; /* Set the navbar to fixed position */
+        top: 0; /* Position the navbar at the top of the page */
+        width: 100%; /* Full width */
+        }
+
+        /* Links inside the navbar */
+        .navbar a {
+        float: left;
+        display: block;
+        color: #f2f2f2;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+        }
+
+        /* Change background on mouse-over */
+        .navbar a:hover {
+        background: #ddd;
+        color: black;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <a href="/">Home</a>
+        <a href="pandas">Pandas</a>
+        <a href="matplotib">matplotlib</a>
+        <a href="git">Git</a>
+      </div>
+    <h1>Pandas in Python</h1>
+    <div class="container">
+        <p>Import the panda library</p>
+        <input type="text" value="import pandas as pd" id="textToCopy2" class="code-input" disabled>
+        <button onclick="copyText('textToCopy2')">Copy Text</button>
+    </div>
+    <div class="container">
+        <p>Import the dataset from the address and assign it to a variable</p>
+        <input type="text" value="pd.read_table('https://raw.githubusercontent.com/justmarkham/DAT8/master/data/chipotle.tsv')&#10;chipo = pd.read_table('https://raw.githubusercontent.com/justmarkham/DAT8/master/data/chipotle.tsv')" id="textToCopy1" class="code-input" disabled>
+        <button onclick="copyText('textToCopy1')">Copy Text</button>
+    </div>
+    <div class="container">
+        <p>To see the first 10 entries</p>
+        <input type="text" value="chipo.head(10)" id="textToCopy3" class="code-input" disabled>
+        <button onclick="copyText('textToCopy3')">Copy Text</button>
+    </div>
+    <div class="container">
+        <p>What is the number of observations in the dataset?</p>
+        <input type="text" value="len(chipo.axes[0])&#10;chipo['order_id'].count()" id="textToCopy4" class="code-input" disabled>
+        <button onclick="copyText('textToCopy4')">Copy Text</button>
+    </div>
+    <div class="container">
+        <p>To get the number of columns in a dataset</p>
+        <input type="text" value="len(chipo.axes[1])" id="textToCopy5" class="code-input" disabled>
+        <button onclick="copyText('textToCopy5')">Copy Text</button>
+    </div>
+    <div class="container">
+        <p>Print the names of all the columns</p>
+        <input type="text" value="chipo.columns" id="textToCopy6" class="code-input" disabled>
+        <button onclick="copyText('textToCopy6')">Copy Text</button>
+    </div>
+    <div class="container">
+        <p>To see how the dataset is indexed</p>
+        <input type="text" value="chipo.index" id="textToCopy7" class="code-input" disabled>
+        <button onclick="copyText('textToCopy7')">Copy Text</button>
+    </div>
+
+    <div class="container">
+        <p>To see The mode using groupby and aggergate funtion "sum"</p>
+        <input type="text" value="most_ordered_item = chipo.groupby('item_name').aggregate({'quantity':'sum'}).sort_values(by='quantity', ascending=False).head(1)" id="textToCopy8" class="code-input" disabled>
+        <button onclick="copyText('textToCopy8')">Copy Text</button>
+    </div>
+
+    <div class="container">
+        <p>To how many most-bought items were bought</p>
+        <input type="text" value="most_ordered_item.iloc[0]" id="textToCopy9" class="code-input" disabled>
+        <button onclick="copyText('textToCopy9')">Copy Text</button>
+    </div>
+
+    <div class="container">
+        <p>Groups the DataFrame by choice_description, calculates the sum of quantity for each group, sorts the results by the quantity</p>
+        <input type="text" value="most_choice_description = chipo.groupby('choice_description').aggregate({'quantity':'sum'}).sort_values(by='quantity', ascending=False).head(1)" id="textToCopy10" class="code-input" disabled>
+        <button onclick="copyText('textToCopy10')">Copy Text</button>
+    </div>
+
+    <div class="container">
+        <p>Change the datatype to float and check teh datatype</p>
+        <input type="text" value="chipo['item_price'] = chipo['item_price'].map(lambda x: float(x.strip()[1:]))  || chipo['item_price'].dtype" id="textToCopy11" class="code-input" disabled>
+        <button onclick="copyText('textToCopy11')">Copy Text</button>
+    </div>
+
+    <div class="container">
+        <p>Check the sum of teh revenue</p>
+        <input type="text" value="chipo['item_price'].sum()" id="textToCopy12" class="code-input" disabled>
+        <button onclick="copyText('textToCopy12')">Copy Text</button>
+    </div>
+
+    <div class="container">
+        <p>Check different items sold</p>
+        <input type="text" value="chipo['item_name'].nunique()" id="textToCopy13" class="code-input" disabled>
+        <button onclick="copyText('textToCopy13')">Copy Text</button>
+    </div>
+
+    <div class="container">
+        <p>Average revenue amout per order</p>
+        <input type="text" value="chipo.groupby('order_id')['item_price'].mean()" id="textToCopy14" class="code-input" disabled>
+        <button onclick="copyText('textToCopy14')">Copy Text</button>
+    </div>
+
+    <div class="container">
+        <p>Reading from CSV file</p>
+        <input type="text" value="df = pd.read_csv('data.csv', sep=';')" id="textToCopy15" class="code-input" disabled>
+        <button onclick="copyText('textToCopy15')">Copy Text</button>
+    </div>
+
+    <script>
+        function copyText(inputId) {
+            var copyText = document.getElementById(inputId);
+            copyText.disabled = false; // Enable the input temporarily
+            copyText.select();
+            copyText.setSelectionRange(0, 99999); // For mobile devices
+            document.execCommand("copy");
+            copyText.disabled = true; // Disable the input again
+            alert("Copied the text: " + copyText.value);
+        }
+    </script>
+</body>
+</html>
